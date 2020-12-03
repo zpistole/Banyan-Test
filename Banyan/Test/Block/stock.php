@@ -8,10 +8,6 @@ use Magento\Framework\View\Element\Template;
 
 class Stock extends Template 
 {
-    /*public function getDate() {
-        return date('Y-m-d');
-    }*/
-
     //private local variable 
     private $registry; 
     private $stockRegistry;
@@ -25,18 +21,21 @@ class Stock extends Template
     {
         parent::__construct($context, $data);
         $this->registry = $registry;
+        $this->stockRegistry = $stockRegistry;
     }
 
     public function getStockInfo() {
         //1. Fetch the product model 
-        //2. Get the qty from the product model 
-        //3. Retun it here 
         $product = $this->getProduct();
+
+        //2. Get the qty from the product model 
         $stock = $this->stockRegistry->getStockItem($product->getId());
+        
+        //3. Retun it here 
         return $stock->getQty();
     }
 
-    public function getProduct() {
-        return $this->registry->registry('current_products');
+    protected function getProduct() {
+        return $this->registry->registry('product');
     }
 }
