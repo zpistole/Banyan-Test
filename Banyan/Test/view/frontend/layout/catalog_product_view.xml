@@ -7,6 +7,5 @@
         <referenceContainer name="product.info.main" >
             <block class="Banyan\Test\Block\Stock" name="product.stock" template="Banyan_Test::stock.phtml" />
         </referenceContainer>
-
     </body>
 </page>
